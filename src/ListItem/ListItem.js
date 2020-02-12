@@ -11,7 +11,7 @@ export default class ListItem extends Component {
 
         // need to come back to this to get accurate price showing
         const price = calculatePrice(saleability);
-        const saleInfo = this.props['saleInfo'];
+        // const saleInfo = this.props['saleInfo'];
         
         function calculatePrice(saleability, saleInfo) {
             const price = (saleability === "NOT_FOR_SALE") ? 'not for sale' : '$5';

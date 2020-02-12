@@ -12,7 +12,6 @@ export default class App extends Component {
         printType: 'all',
         filter: 'paid-ebooks',
         books: [],
-        theURL: this.generateURL()
       };
   }
 
@@ -29,7 +28,6 @@ export default class App extends Component {
       .then(response => response.json())
       .then(data => {
         const books = data['items']
-        console.log(books);
         this.setState({
           books
         })
@@ -41,31 +39,30 @@ export default class App extends Component {
       })
   }
 
-  // &printType=${this.state.printType}&filter=${this.state.filter}&q=${this.state.searchTerm}`;
 
-  generateURL() {
+  generateURL= () => {
     const endpoint = 'https://www.googleapis.com/books/v1/volumes/?key=';
     const key1 = 'AIzaSyC72GJGPn4Oxjuw1iq-';
     const key2 ='uUqSF-k01TjiigQ';
-    const fullURL = `${endpoint}${key1}${key2}&q=Mockingbird`
+    const fullURL = `${endpoint}${key1}${key2}&q=${this.state.searchTerm}&&printType=${this.state.printType}&filter=${this.state.filter}`
     return fullURL
   }
 
-  updateSearchTerm(term) {
+  updateSearchTerm = (term) => {
     this.setState({
       searchTerm: term
     })
     console.log(this.state.searchTerm);
   }
 
-  setSelectedPrintType(selected) {
+  setSelectedPrintType = (selected) => {
     this.setState({
       printType: selected
     });
     console.log(this.state.printType);
   }
 
-  setSelectedBookType(selected) {
+  setSelectedBookType = (selected) => {
     this.setState({
       filter: selected
     });

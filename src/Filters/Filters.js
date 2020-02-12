@@ -9,8 +9,8 @@ export default class Filters extends Component {
             <div className='filters'>
                 <FilterForm 
                     searchTerm={this.props.searchTerm}
-                    handleUpdate={this.props.handleUpdate}
-                    handleSubmit={this.props.handleUpdate}/>
+                    handleUpdate={term => this.props.handleUpdate(term)}
+                    handleSubmit={term => this.props.handleSubmit(term)}/>
                 <FilterMenus 
                     changePrintTypeHandler={this.props.changePrintTypeHandler}
                     changeBookTypeHandler={this.props.changeBookTypeHandler}/>
