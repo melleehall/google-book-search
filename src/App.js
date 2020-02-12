@@ -8,51 +8,17 @@ export default class App extends Component {
   constructor(props) {
     super(props);
       this.state = {
-        searchTerm: 'Mockingbird',
+        searchTerm: '',
         printType: 'all',
         filter: 'paid-ebooks',
         books: [],
       };
   }
 
-  componentDidMount() {
-    const url = this.generateURL();
-    console.log(this.state.theURL);
-    fetch(url)
-    .then(res => {
-      if(!res.ok) {
-        throw new Error('Something went wrong')
-      }
-      return res;
-    })
-      .then(response => response.json())
-      .then(data => {
-        const books = data['items']
-        this.setState({
-          books
-        })
-      })
-      .catch(err => {
-        this.setState({
-          error: err.message
-        })
-      })
-  }
-
-
-  generateURL= () => {
-    const endpoint = 'https://www.googleapis.com/books/v1/volumes/?key=';
-    const key1 = 'AIzaSyC72GJGPn4Oxjuw1iq-';
-    const key2 ='uUqSF-k01TjiigQ';
-    const fullURL = `${endpoint}${key1}${key2}&q=${this.state.searchTerm}&&printType=${this.state.printType}&filter=${this.state.filter}`
-    return fullURL
-  }
-
   updateSearchTerm = (term) => {
     this.setState({
       searchTerm: term
     })
-    console.log(this.state.searchTerm);
   }
 
   setSelectedPrintType = (selected) => {
@@ -69,6 +35,13 @@ export default class App extends Component {
     console.log(this.state.filter);
   }
 
+  handleNewBooklist = (books) => {
+    console.log('handleNewBooklist ran')
+    this.setState({
+      books
+    })
+  }
+
   render () {
     return (
       <div>
@@ -78,7 +51,9 @@ export default class App extends Component {
         <Filters 
           searchTerm={this.state.searchTerm}
           handleUpdate={term => this.updateSearchTerm(term)}
-          handleSubmit={term => this.generateURL(term)}
+          printType={this.state.printType}
+          filter={this.state.filter}
+          newBooklist={books => this.handleNewBooklist(books)}
           changePrintTypeHandler={selected => this.setSelectedPrintType(selected)}
           changeBookTypeHandler={selected => this.setSelectedBookType(selected)}
         />
