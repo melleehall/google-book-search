@@ -10,7 +10,7 @@ export default class App extends Component {
       this.state = {
         searchTerm: '',
         printType: 'all',
-        filter: 'paid-ebooks',
+        filter: 'partial',
         books: [],
       };
   }

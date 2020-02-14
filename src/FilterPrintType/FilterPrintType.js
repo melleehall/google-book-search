@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
-import './FilterBookType.css';
+import './FilterPrintType.css';
 
-export default class FilterBookType extends Component {
+export default class FilterPrintType extends Component {
+    
     handleChange(e) {
 
-        this.props.changeBookTypeHandler(e.target.value);
+        this.props.changePrintTypeHandler(e.target.value);
+
+        
         // generate the url to make the API call
         const endpoint = 'https://www.googleapis.com/books/v1/volumes/?key=';
         const key1 = 'AIzaSyC72GJGPn4Oxjuw1iq-';
@@ -33,31 +36,26 @@ export default class FilterBookType extends Component {
     }
     
     render() {
-
-        const filterOptions = <select
-                                    id='book-type'
-                                    name='book-type'
+        const printTypeOptions = <select
+                                    id='print-type'
+                                    name='print-type'
                                     className='dropdown'
-                                    onChange={(e) => {
-                                        this.props.changeBookTypeHandler(e.target.value);
-                                        this.handleChange(e);
-                                    }}>
-                                    {/* <option>Apply a filter...</option> */}
-                                    <option value='partial'>partial</option>
-                                    <option value='full'>full</option>
-                                    <option value='free-ebooks'>free-ebooks</option>
-                                    <option value='paid-ebooks'>paid-ebooks</option>
-                                    <option value='ebooks'>ebooks</option>
+                                    onChange={e => this.handleChange(e)}
+                                    >
+                                    <option value='all'>all</option>
+                                    <option value='books'>books</option>
+                                    <option value='magazines'>magazines</option>
                                 </select>
                                
+
         return (
             <div>
                 <label 
-                    htmlFor='book-type'
+                    htmlFor='print-type'
                     className='label'>
-                    Book Type:
+                    Print Type:
                 </label>
-                {filterOptions}
+                 {printTypeOptions}
             </div>
         )
     }
