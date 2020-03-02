@@ -39,7 +39,6 @@ export default class FilterBookType extends Component {
                                     name='book-type'
                                     className='dropdown'
                                     onChange={(e) => {
-                                        this.props.changeBookTypeHandler(e.target.value);
                                         this.handleChange(e);
                                     }}>
                                     {/* <option>Apply a filter...</option> */}

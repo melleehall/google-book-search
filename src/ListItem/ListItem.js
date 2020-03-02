@@ -7,13 +7,17 @@ export default class ListItem extends Component {
         const title = this.props['volumeInfo']['title'];
         const author = this.props['volumeInfo']['authors'][0];
         
-        const saleability = this.props['saleInfo']['saleability'];
+        const saleInfo = this.props['saleInfo'];
 
         // need to come back to this to get accurate price showing
-        const price = calculatePrice(saleability);
+        const price = calculatePrice(saleInfo);
         
-        function calculatePrice(saleability, saleInfo) {
-            const price = (saleability === "NOT_FOR_SALE") ? 'not for sale' : '$5';
+        console.log(this.props.saleInfo.listPrice);
+        // const saleInfo = this.props['saleInfo']['listPrice']['amount'];
+
+        function calculatePrice(saleInfo) {
+            console.log(saleInfo);
+            const price = (saleInfo.saleability === "NOT_FOR_SALE") ? 'not for sale' : '$' + saleInfo.listPrice.amount;
             return price;
         }
 
